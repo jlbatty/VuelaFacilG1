@@ -1,0 +1,24 @@
+{
+  "name": "vuelafacil",
+  "version": "1.0.0",
+  "description": "VuelaFácli webpage first recomm.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve"
+  },
+  "author": "Johnatan Arango <ingyotis@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.2.2",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.1.1"
+  }
+}
