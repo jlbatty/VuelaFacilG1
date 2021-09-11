@@ -2,7 +2,7 @@ const path = require('path');
 //plugins
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { dirname } = require('path/posix');
+
 
 module.exports = {
   entry: './src/index.js',
@@ -13,6 +13,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
+  mode: 'development',
   module: {
     rules:[
       {
@@ -39,7 +40,9 @@ module.exports = {
     new MiniCssExtractPlugin(),
     ],
     devServer: {
-      contentBase: path.join(--dirname, 'dist'),
+      static: {
+        directory: path.join(__dirname, 'dist'),
+      },
       compress: true,
       historyApiFallback: true,
       open: true,
