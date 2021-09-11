@@ -1,4 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.mainInput {
+  margin: 100px 200px;
+}
+
 .tabs-container {
   display: flex;
   align-items: flex-start;
+  margin-bottom: 0;
+}
+.mainInput__tab {
+  padding: 25px 40px;
+  background-color: aquamarine;
+  border: 1px solid #0156c4;
+  border-radius: 10px 10px 0 0;
+}
+.input-container {
+  border: 1px solid rgb(27, 25, 129);
 }
