@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 //styles
 import '../assets/styles/MainInput.css'
+import Reserva from './Reserva';
 
 const MainInput = () => {
   const [selected, setSelected] = useState('vuelos');
@@ -25,14 +26,20 @@ const MainInput = () => {
   return (
     <div className="mainInput">
       <div className="tabs-container">
-        <div id="vuelos" className="mainInput__tab isSelected" onClick={handleClick}>Vuelos</div>
-        <div id="checkin" className="mainInput__tab" onClick={handleClick}>Check-in</div>
-        <div id="reserva" className="mainInput__tab" onClick={handleClick}>Mi Reserva</div>
+        <div id="vuelos" className={`mainInput__tab ${selected === 'vuelos'? 'selected' : '' }`} onClick={handleClick}>
+          Vuelos
+        </div>
+        <div id="checkin" className={`mainInput__tab ${selected === 'checkin'? 'selected' : ''}`} onClick={handleClick}>
+          Check-in
+        </div>
+        <div id="reserva" className={`mainInput__tab ${selected === 'reserva'? 'selected' : ''}`} onClick={handleClick}>
+          Mi Reserva
+        </div>
       </div>
       <div className="input-container">
         {
           selected === 'vuelos' && 
-          <h2>Acá debería ir el componente input para los vuelos</h2>
+          <Reserva />
         }
         {
           selected === 'checkin' &&

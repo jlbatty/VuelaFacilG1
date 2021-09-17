@@ -3,7 +3,7 @@
 }
 
 .mainInput {
-  margin: 100px 200px;
+  margin: 100px;
 }
 
 .tabs-container {
@@ -16,7 +16,13 @@
   background-color: aquamarine;
   border: 1px solid #0156c4;
   border-radius: 10px 10px 0 0;
+  cursor: pointer;
 }
 .input-container {
+  height: 250px;
+  width: 100%;
   border: 1px solid rgb(27, 25, 129);
+}
+.selected {
+  background-color: chartreuse;
 }
