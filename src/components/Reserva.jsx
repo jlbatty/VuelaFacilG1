@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import Select, { components } from 'react-select'
+import DatePicker from 'react-datepicker'
 
-//tengo que instalar el material ui lab. Importar el Autocomplete. Y revisar tree shaking.
-
-//para las fechas, instalar el datepicker de react.
-
-//diseñar primero como un componente para movil.
+import 'react-datepicker/dist/react-datepicker.css'
 
 const ciudades = [
   { iata : 'BOG', ciudad: 'Bogotá', nombre: 'Aeropuerto el Dorado'},
@@ -18,19 +15,13 @@ const ciudades = [
   { iata : 'BGA', ciudad: 'Bucaramanga', nombre: 'Aeropuerto Palonegro'}, 
 ]
 
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
-
-const nombresCiudades = ciudades.map( ciudad => ciudad.ciudad)
-  //habría que mirar si hay alguna referencia a los aeropuertos
-
 const Reserva = () => {
-  const [desde, setDesde] = useState(ciudades[0])
-  
-  console.log(ciudades)
+  const [origen, setOrigen] = useState(null)
+  const [destino, setDestino] = useState(null)
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
+
+  console.log(origen)
   return (
     <>
       <form>
@@ -38,18 +29,53 @@ const Reserva = () => {
           <input type="checkbox" name="tipoVuelo" id="tipoVuelo" />
           <label htmlFor="tipoVuelo">Vuelo solo de ida</label>
           <Select 
-            defaultValue={selectedOption}
-            className="desde-input"
-            // components={{option}}
+            defaultValue={origen}
+            onChange={setOrigen}
+            className="autocomplete origen-input"
+            placeholder="Lugar de origen"
             isClearable
             isSearchable
             options={ciudades}
-            infoRender={}
+            getOptionValue={ option => option.ciudad}
+            getOptionLabel={ option => `${option.iata} - ${option.ciudad} - ${option.nombre}`}
+            isOptionDisabled={ option => option === destino }
           />
-          
+           <Select 
+            defaultValue={destino}
+            onChange={setDestino}
+            className="autocomplete destino-input"
+            placeholder="Lugar de destino"
+            isClearable
+            isSearchable
+            options={ciudades}
+            getOptionValue={ option => option.ciudad}
+            getOptionLabel={ option => `${option.iata} - ${option.ciudad} - ${option.nombre}`}
+            isOptionDisabled={ option => option === origen }
+          /> 
+          <div className="date-input">
+            <DatePicker
+              selected={startDate}
+              onChange={ date => setStartDate(date)}
+              isClearable
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+              placeholderText="Fecha de ida"
+            />
+            <DatePicker
+              selected={endDate}
+              onChange={ date => setEndDate(date)}
+              isClearable
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              minDate={startDate}
+              placeholderText="Fecha de regreso"
+            />
+          </div>
         </div>
        
-          <button type="submit">BUscar Vuelos</button>
+        <button type="submit">BUscar Vuelos</button>
       </form>
     </>
   )
